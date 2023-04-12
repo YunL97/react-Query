@@ -34,4 +34,5 @@ queryClient.prefetchQuery(["posts", nextpage], () => 함수,
 * useMuation은 기본값으로는 재시도를하지 않지만 자동 재시도를 적용하고 싶다면 설정가능
 * 리액트쿼리 개발자도구는 노드 환경을 변경할 수 있을때만 보이게된다, 노드환경이 프로덕션으로 설정되어있지 않은경우
 * pageParams는 많이 사용되지 않는다 모든 쿼리는 페이지 배열에 고유한 요소를 가지고 있고 그 요소는 해당쿼리에 대한 데이터에 해당
+* infiniteQuery에서 pageParam은 fetchNextPage가 어떻게 보일지 결정하고 다음페이지가 있는지 결정
 * 
