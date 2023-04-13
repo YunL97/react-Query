@@ -35,4 +35,7 @@ queryClient.prefetchQuery(["posts", nextpage], () => 함수,
 * 리액트쿼리 개발자도구는 노드 환경을 변경할 수 있을때만 보이게된다, 노드환경이 프로덕션으로 설정되어있지 않은경우
 * pageParams는 많이 사용되지 않는다 모든 쿼리는 페이지 배열에 고유한 요소를 가지고 있고 그 요소는 해당쿼리에 대한 데이터에 해당
 * infiniteQuery에서 pageParam은 fetchNextPage가 어떻게 보일지 결정하고 다음페이지가 있는지 결정
+* 무한스크롤에서 스크롤이 원위치 되는데 새로운 페이지를 열어야 할 때 조기 반환이 실행되기 때문
+* isLoading을 isFetching로 바꾸면 된다 -> isFetching은 조기반환을 하지 않기때문
+* 조기반환(early return): 렌더링 도중 조건문등의 검사를 해서 특정조건이 만족되지 않으면 함수의 실행을 중단하고 빈값을 반환하는것
 * 
