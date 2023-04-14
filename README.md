@@ -38,4 +38,6 @@ queryClient.prefetchQuery(["posts", nextpage], () => 함수,
 * 무한스크롤에서 스크롤이 원위치 되는데 새로운 페이지를 열어야 할 때 조기 반환이 실행되기 때문
 * isLoading을 isFetching로 바꾸면 된다 -> isFetching은 조기반환을 하지 않기때문
 * 조기반환(early return): 렌더링 도중 조건문등의 검사를 해서 특정조건이 만족되지 않으면 함수의 실행을 중단하고 빈값을 반환하는것
+* 양방향스크롤: 데이터의 중간부터 시작할때 유용 useInfiniteQuery는 양방향스크롤도 고려해서 만들어졌기 때문에 유용하게 사용가능
+* 
 * 
