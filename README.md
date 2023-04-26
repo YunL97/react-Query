@@ -46,3 +46,14 @@ queryClient.prefetchQuery(["posts", nextpage], () => 함수,
   * 커스텀훅에 넣어주면 다수의 컴포넌트에 굳이 불러올 필요가 없다
 
 * 쿼리키는 리액트쿼리의 작업을 쵣한 효율적이 되도록 하는키
+* isLoading = isFetching - 캐시데이터
+* useIsFetching: 현재 가져오는 중인 쿼리가 있는지를 알려주는 훅, useIsFettching이 0보다 크면 가져오는 데이터가 있다는뜻
+```
+const isFetching = useIsFetching();
+
+const display = isFetching ? 'inherit' : 'none'; 
+```
+* 리액트쿼리는 자동으로 윈도우에 다시돌아올때 데이터를 다시가져온다
+* 에러핸들링응 중앙화하는법: onError 에서 나오는 error을 커스텀 훅으로 보내면 될듯?
+*  
+*  
