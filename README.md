@@ -63,4 +63,6 @@ useEffect(() => {
     queryClient.prefetchQuery(["posts", nextPage], () => fetchPosts(netPage))
 }, [currentPage, queryClient])
 ```
+*  리액트쿼리가 useError훅을 사용하지 않는이유: 깊이 생각해보면 useError훅이 존재 할수없음  -> 정수 이상의 값이 반환되어야 하기때문 -> 사용자에게 오류를 표시하려면 각 오류에 대한 문자열이 필요한데 각기 다른 문자열을 가진 오류가 시시각각 팝업 하고록 구현하는 것은 쉽지 않음
+*  QueryClient를 위해서 onError 핸들러 기본값을 만드는게 좋다
 *  
