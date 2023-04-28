@@ -55,5 +55,3 @@ const display = isFetching ? 'inherit' : 'none';
 ```
 * 리액트쿼리는 자동으로 윈도우에 다시돌아올때 데이터를 다시가져온다
 * 에러핸들링응 중앙화하는법: onError 에서 나오는 error을 커스텀 훅으로 보내면 될듯? 아니면 훅대신 function
-*  
-*  
