@@ -15,7 +15,7 @@
 *  쿼리키를 쿼리에 대한 의존성 배열로 취급가능, 쿼리키가 변경되면 ['comments', post.id] 즉 post.id가 업데이트 되면 React Query가 새 쿼리를 생성
 *  예를들어 블로그 글의 댓글을 불러올 때 의존성 키를 넣지 않으면 계속 처음게 나옴, 업데이트 되기때문
 *  페이지네이션: 페이지마다 다른 쿼리키가 필요 -> 쿼리키를 배열로 업데이트해서 가져오는 페이지 번호를 포함하면된다.
-* prefetching: 데이터를 캐시에 추가하며 구성할 수 있긴 하지만 기본값으로 만료상태 -> 데이터를 사용하고자할 때 만료상태에서 데이터를 다시가져옴 -> 추후 사용자가 사용할 법한 모든 데이터에 프리페칭을 사용
+* prefetching: 데이터를 캐시에 추가하며 구성할 수 있긴 하지만 기본값으로 만료상태 -> 데이터를 사용하고자할 때 만료상태에서 데이터를 다시가져옴 -> 추후 사용자가 사용할 법한 모든 데이터에 프리페칭을 사용 , 페이지네이션 다음데이터를 미리가져옴
 * 프리패칭은 useQuery라는 훅을 통해 queryclient를 통해서 가져올 수 있음 
 ```
 queryClient.prefetchQuery(["posts", nextpage], () => 함수,
@@ -76,10 +76,34 @@ interface UseStaff {
       const [filter, setFilter] = useState('all');
 
       const fallback = [];
-      const { data: staff = fallback} = useQuery(queryKey.staff, getStaff);
-      
+      const { data: staff = fallback} = useQuery(queryKey.staff, getStaff); 
+
 
       return {staff, filter, setFilter};
    }
 }
 ```
+* React Query로 데이터를 미리 채우는 방법이있음 -> 일반적으로 사용자에게 보여주고 싶은 정보가 있을때 캐시에 아직 데이터가 없는 경우 미리 데이터를 채울 수 있음
+  * 1. prefetchQuery: 데이터를 서버로부터 가져옴, ,method to queryClient 캐시를 더할수있나 0
+  * 2. setQueryData :데이터를 클라이언트로부터가져옴 ,method to queryClient 캐시를 더할수있나 0
+  * 3. placeholderData: 데이터를 클라이언트로부터 가져옴, ,method to useQuery 캐시를 더할수있나 x
+  * 4. initialData: 데이터를 클라이언트로부터 가져옴, method to useQuery 캐시를 더할수있나 0
+
+* 데이터를 미      리 가져오는 것은 동적인 데이터 (ex주식) 는 부적합 하다
+* useQuery는 페칭과 리페칭등의 작업이 필요한 ㅝ리를 생성
+* prefetchQuery 일회성-> 쿼리클라이언트 메소드이므로 쿼리클라이언트를 반환해야하면 이를 위해 useQuery클라이언트 훅을 사용해야한다
+```
+export function useA(): Treatment[] {
+   conat fallback =[];
+   const {data = fallback} =useQuery(queryKeys.trements, getTrements);
+   return data;
+}
+
+export function usePrefetchA(): void { //캐시만 채우는게 목적이므로 리턴 없어도 됨
+   const queryClient = useQueryClient();
+   queryColent.prefetchQuery*queryKeys.trements, getTrements);
+}
+```
+* 프리페치는 탑레벨에서 실행시키는건가?
+* 훅이 아닌경우 훅내에서 useQueryClient 사용불가능
+* 
