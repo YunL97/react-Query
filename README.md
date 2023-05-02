@@ -101,7 +101,7 @@ export function useA(): Treatment[] {
 
 export function usePrefetchA(): void { //캐시만 채우는게 목적이므로 리턴 없어도 됨
    const queryClient = useQueryClient();
-   queryColent.prefetchQuery*queryKeys.trements, getTrements);
+   queryColent.prefetchQuery(queryKeys.trements, getTrements);
 }
 ```
 * 프리페치는 탑레벨에서 실행시키는건가?
