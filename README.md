@@ -92,6 +92,7 @@ interface UseStaff {
 * 데이터를 미      리 가져오는 것은 동적인 데이터 (ex주식) 는 부적합 하다
 * useQuery는 페칭과 리페칭등의 작업이 필요한 ㅝ리를 생성
 * prefetchQuery 일회성-> 쿼리클라이언트 메소드이므로 쿼리클라이언트를 반환해야하면 이를 위해 useQuery클라이언트 훅을 사용해야한다
+* prefetchQuery: 미리 데이터를 가져와서 캐시에 저장해두는기능: 데이터가 필요할 때 즉시 사용할 수 있어서 네트워크 지연 시간을 줄일 수 있다.
 ```
 export function useA(): Treatment[] {
    conat fallback =[];
@@ -124,6 +125,10 @@ export function usePrefetchA(): void { //캐시만 채우는게 목적이므로 
 
 * 리패칭 제한하는법:  리패칭을 제한할때는 신중해야된다.-> 미세한 변동에도 큰변화를 불러오는 데이터에는 적용하면 안된다
   * stale시간 증가 -> 창을 재포커스 하거나 네트워크에 재연결하는 트리거는 데이터가 실제로 만료된 경우에만 작용
-  * 불리언 옵션 끄면됨 refetchOnMount, refetchOnWindowFocus, refetchOnReconnect
+  * 불리언 옵션 끄면됨 
+  * refetchOnMount: 컴포넌트가 마운트될때 쿼리가 자동으로 가져온다 이옵션은 일반적으로 데이터를 로드하려는 경우 사용
+  * refetchOnWindowFocus: 브라우저 창이 포커스를 받았을 때 쿼리가 자동으로 다시가져온다.
+  * refetchOnReconnect: 오프라인에서 온라인으로 전환될 때 자동으로 쿼리가 다시 가져온다. 사용자가 인터넷에 연결할 때 데이터가 최신 상태인지 확인하려는 경우에 사용
+  * 이런거를 false로 놓는다는것은 보수적이라는뜻 -> 네트워크 호출에 보수적, 대부분의 쿼리에서 리페칭을 할만큼 데이터 변경이 충분하지 않다는 뜻
 * 데이터가 업데이트 되지 않는것보다 항상 실시간인것 보다 낫다
-* 
+* catcheTime 을 staleTime보다 작게 설정하면 캐시의 쓸모가 없어짐
