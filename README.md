@@ -159,3 +159,4 @@ export function usePrefetchA(): void { //캐시만 채우는게 목적이므로 
 * 쿼리키 접두사: 동일한 쿼리키 접두사로 서로 관련된 쿼리를 설정하면 모든 쿼리를 한번에 무효화 가능
 * queryClient.invalidateQueries: 특정 쿼리 또는 쿼리들을 갱신하기 위해 사용 캐시된 데이터를 갱신하기위해 호출
 * queryClient.removeQueries('user'): user라는 키를 가진 모든 쿼리가 캐시에서 제거
+* mutation을 이용해서 서버에서 받은 데이터로 데이터도 업데이트가능
