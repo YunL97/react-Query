@@ -170,4 +170,25 @@ export function usePrefetchA(): void { //캐시만 채우는게 목적이므로 
 
 *  다시한번 상기하자면 리액트쿼리는 서버와 클라이언트 간의 커뮤니케이션인 네트워크 호출과 주로 연관이 되어있다
 *  MSW: 네트워크 호출을 조정하여 테스트 조건을 설정하는데 도움을 주는 라이브러리
-*  
+
+```
+test('renders response from query', () => {
+  render(<Treatments />)
+})
+```
+* 병렬로 실행하는경우 테스트의 신뢰도가 낮아질 수 있다.
+* test-utils에 index.tsx에서 queryclient를 설정해줘야함
+```
+const generateQueryClient = () => {
+  return new QueryClient()
+}
+
+export function renderWithQueryClient(
+  ui: ReactElememt,
+  client?: QueryClient
+): RenderResult {
+  const queryClient = client ?? genenateQueryClient()
+
+  return render(<QueryClientProvider client={queryClient}>{ui}</queryClient>)
+}
+```
