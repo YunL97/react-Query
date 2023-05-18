@@ -192,3 +192,6 @@ export function renderWithQueryClient(
   return render(<QueryClientProvider client={queryClient}>{ui}</queryClient>)
 }
 ```
+* screen: 렌더링 결과에 접근하는방법
+* findBy: 우리가 대기하고 있음을 뜻한다 즉 비동기
+* 
